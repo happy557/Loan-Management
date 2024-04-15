@@ -1,0 +1,31 @@
+
+{% extends "Site_admin/header_adm.html" %}
+{% block content %}
+{% load static %}
+
+<script>
+	$(function() {
+  $('.dataframe').addClass('table');
+});
+
+</script>
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="forms">
+					<h3 class="title1">EMI</h3>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms">
+						<div class="form-title">
+							<h4></h4>
+						</div>
+						<div class="form-body">
+                            <div class="table">  {{df|safe}}</div>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+        {% endblock %}

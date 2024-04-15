@@ -1,0 +1,77 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+<script>
+   $(function () {
+        $("input[name='chkPassPort']").click(function () {
+            if ($("#chkYes").is(":checked")) {
+                $("#txtPassportNumber").removeAttr("disabled");
+                $("#txtPassportNumber").focus();
+            } else {
+                $("#txtPassportNumber").attr("disabled", "disabled");
+            }
+        });
+    });
+</script>
+	<!-- //header -->
+	<!-- banner -->
+
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+
+					<h3 class="h3-w3l">Vehicle Loan Repayment Details </h3>
+					<div class="about-bottom w3l_contact_form ">
+
+
+								<div class="col-sm-12">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                    <h3 class="alert alert-info">Vehicle Loan </h3>
+                                    {% if data %}
+                                    <table class="table table-striped table-bordered">
+        <thead class="alert-danger"><th>Id</th><th>Due date</th><th>Principal Amount</th><th>Current Principal Amount</th><th>Interest payment</th><th>EMI</th><th>Status</th></thead>
+
+                                        {%  for k in data  %}
+
+                                          <tr>
+
+
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{k.duedate }}</td>
+                                                <td>{{k.principle_payment}}</td>
+                                                <td>{{k.current_principal_payment }}<br>
+                                                <td>{{k.interest_payment }}<br>
+                                                <td>{{k.emi}}</td>
+                                                <td>{{k.status}}</td>
+
+
+                                              </tr>
+
+                                            {% endfor  %}
+                                            {% else %}
+                                            <div class="alert alert-success"> No List Available</div>
+                                            {% endif %}
+
+        </table>
+
+                                    <!-- about bottom-->
+                                    <div class="about-bottom w3l_contact_form ">
+
+
+               </div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

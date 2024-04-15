@@ -1,0 +1,211 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+<script>
+   $(function () {
+        $("input[name='chkPassPort']").click(function () {
+            if ($("#chkYes").is(":checked")) {
+                $("#txtPassportNumber").removeAttr("disabled");
+                $("#txtPassportNumber").focus();
+            } else {
+                $("#txtPassportNumber").attr("disabled", "disabled");
+            }
+        });
+    });
+</script>
+	<!-- //header -->
+	<!-- banner -->
+
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+
+					<h3 class="h3-w3l">Amortization </h3>
+					<div class="about-bottom w3l_contact_form ">
+
+
+								<div class="col-sm-12">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                    <h3 class="alert alert-info">Home Loan </h3>
+                                    {% if data1 %}
+
+                                    <table class="table table-striped table-bordered">
+<thead class="alert-danger"><th>Id</th><th>Total Cost</th><th>Address</th><th>Loan Amount</th><th>Loan Purpose</th><th>Place</th><th>District</th><th>State</th><th>Status</th></thead>
+
+                                        {%  for k in data1  %}
+
+                                          <tr>
+
+
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{k.total_cost}}</td>
+                                                <td>{{k.address}}</td>
+                                                <td>{{k.loan_amount}}</td>
+                                                <td>{{k.loan_purpose}}</td>
+                                                <td>{{k.place}}</td>
+                                                <td>{{k.district}}</td>
+                                                <td>{{k.state}}</td>
+
+                                                <td style="background-color: bisque;">Status : {{k.status}}<br>
+                                                    Allowed Amount : {{k.allowed_loan_amount }}<br>
+                                                    Credited Date : {{k.credited_date}}<br>
+                                                    Interest Rate : {{k.interest_rate}}<br>
+                                                </td>
+
+<td>
+                                                <a href="/cust_repayment_home_loan/{{k.appl_home_loan_id}}" class="btn btn-info">Re Payment Details  </a></td>
+                                                <td></td>
+                                            </tr>
+
+                                            {% endfor  %}
+
+                                            {% else %}
+                                            <div class="alert alert-success"> No List Available</div>
+                                            {% endif %}
+
+        </table>
+        <h3 class="alert alert-info">Educational Loan </h3>
+        {% if data2 %}
+        <table class="table table-striped table-bordered">
+<thead class="alert-danger"><th>Id</th><th>Relation</th><th>Student </th>><th>Highest Qual.</th><th>Percentage</th><th>Course name</th><th>university</th><th>Institution</th><th>Expected Salary</th><th>Total Fee</th><th>Status</th></thead>
+
+            {%  for k in data2  %}
+
+              <tr>
+
+
+                    <td>{{forloop.counter}}</td>
+                    <td>{{k.relation}}</td>
+                    <td>Name: {{k.first_name}} &nbsp; &nbsp;  {{k.last_name}}<br>
+Dob:{{k.dob}}<br>
+Phone_no{{k.phone_number}}<br>
+Address {{k.address}}<br>
+
+
+
+
+                    <td>{{k.highest_qualification}}</td>
+                    <td>{{k.percentage}}</td>
+
+                    <td>{{k.course_name}}</td>
+                    <td>{{k.university}}</td>
+                    <td>{{k.Institution}}</td>
+                    <td>{{k.expected_income}}</td>
+                    <td>{{k.total_fee}}</td>
+
+                    <td style="background-color: bisque;">Status : {{k.status}}<br>
+                        Allowed Amount : {{k.allowed_loan_amount }}<br>
+                        Tenure : {{k.allowed_tenure}}<br>
+                        Dispersal Date : {{k.repayment_date }}<br>
+                        Interest Rate : {{k.interest_rate}}<br>
+                    </td>
+
+                    <td>
+                        <a href="/cust_repayment_edu_loan/{{k.appl_edu_loan_id}}" class="btn btn-info">Re Payment Details  </a></td>
+
+
+                </tr>
+
+                {% endfor  %}
+                {% else %}
+                <div class="alert alert-success"> No List Available</div>
+                {% endif %}
+
+</table>
+
+<h3 class="alert alert-info">Personal Loan </h3>
+
+{% if data3 %}
+<table class="table table-striped table-bordered">
+<thead class="alert-danger"><th>Id</th><th>Purpose</th><th>Amount</th><th>Tenure </th><th>Bank Statement</th><th>Salary Slip</th><th>Status</th></thead>
+
+    {%  for k in data3  %}
+
+      <tr>
+
+
+            <td>{{forloop.counter}}</td>
+            <td>{{k.purpose}}</td>
+            <td>{{k.amount}}</td>
+            <td>{{k.tenure}}</td>
+            <td><a href="{{k.bank_statement}}">Download</a></td>
+            <td><a href="{{k.salary_slip}}">Download</a></td>
+
+            <td style="background-color: bisque;">Status : {{k.status}}<br>
+                Allowed Amount : {{k.allowed_loan_amount }}<br>
+                Tenure : {{k.allowed_tenure}}<br>
+                Dispersal Date : {{k.dispersal_date }}<br>
+                Interest Rate : {{k.interest_rate}}<br>
+            </td>
+
+            <td>
+                <a href="/cust_repayment_personal_loan/{{k.appl_personal_loan_id}}" class="btn btn-info">Re Payment Details  </a></td>
+
+        </tr>
+
+        {% endfor  %}
+        {% else %}
+        <div class="alert alert-success"> No List Available</div>
+        {% endif %}
+
+</table>
+<h3 class="alert alert-info">Vehicle Loan </h3>
+{% if data4 %}
+<table class="table table-striped table-bordered">
+<thead class="alert-danger"><th>Id</th><th>Vehicle Type</th><th>Manufacture</th><th>Model</th><th>Supplier</th><th>cost</th><th>Down payment</th><th>Tenure</th><th>Status</th></thead>
+
+    {%  for k in data4  %}
+
+      <tr>
+
+
+            <td>{{forloop.counter}}</td>
+            <td>{{k.vehicle_type}}</td>
+            <td>{{k.manufacture }}</td>
+            <td>{{k.vmodel}}</td>
+            <td>{{k.Supplier}}</td>
+            <td>{{k.cost}}</td>
+            <td>{{k.dpayment}}</td>
+            <td>{{k.tenure }}</td>
+
+            <td style="background-color: bisque;">Status : {{k.status}}<br>
+                Allowed Amount : {{k.allowed_loan_amount }}<br>
+
+                Dispersal Date : {{k.dispersal_date  }}<br>
+                Interest Rate : {{k.interest_rate}}<br>
+            </td>
+
+            <td>
+                <a href="/cust_repayment_vehicle_loan/{{k.appl_vehicle_loan_id}}" class="btn btn-info">Re Payment Details  </a></td>
+
+
+
+        </tr>
+
+        {% endfor  %}
+        {% else %}
+        <div class="alert alert-success"> No List Available</div>
+        {% endif %}
+
+</table>
+                                    <!-- about bottom-->
+                                    <div class="about-bottom w3l_contact_form ">
+
+
+               </div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

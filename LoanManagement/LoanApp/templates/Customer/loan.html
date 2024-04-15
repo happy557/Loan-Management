@@ -1,0 +1,39 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+
+	<!-- //header -->
+	<!-- banner -->
+
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+					<h3 class="h3-w3l">Loan Schemes</h3>
+					<!-- about bottom-->
+					<div class="about-bottom w3l_contact_form ">
+
+
+								<div class="col-sm-12">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+
+
+                                    <!-- about bottom-->
+                                    <div class="about-bottom w3l_contact_form ">
+
+               </div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

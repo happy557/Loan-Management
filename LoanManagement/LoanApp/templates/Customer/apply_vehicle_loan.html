@@ -1,0 +1,200 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+<script>
+   $(function () {
+        $("input[name='chkPassPort']").click(function () {
+            if ($("#chkYes").is(":checked")) {
+                $("#txtPassportNumber").removeAttr("disabled");
+                $("#txtPassportNumber").focus();
+            } else {
+                $("#txtPassportNumber").attr("disabled", "disabled");
+            }
+        });
+    });
+</script>
+	<!-- //header -->
+	<!-- banner -->
+
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+
+					<h3 class="h3-w3l">Vehicle Loan  Application Form </h3>
+					<div class="about-bottom w3l_contact_form ">
+
+
+								<div class="col-sm-12">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+
+
+                                    <!-- about bottom-->
+                                    <div class="about-bottom w3l_contact_form ">
+
+                                        <form method="post" action="/save_vehicle_loan/" method="post" id="myform" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group"> <label for="">Vehicle Type</label>
+                                                    <select name="vehicle_type" class="form-control">
+                <option value="">--Select--</option>
+                <option value="Two-Wheeler Loan">Two-Wheeler Loan</option>
+                <option value="Four-Wheeler Loan">Four-Wheeler Loan</option>
+
+
+                                                    </select> </div>
+
+                                            <div class="form-group">
+                                              <span><label>Manufacture</label></span>
+                                             <span><input name="manufacture" id="manufacture" type="text" class="form-control"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <span><label>Vehicle Model</label></span>
+												<span><input name="vmodel" id="vmodel" type="text" class="form-control"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <span><label>Supplier</label></span>
+												<span><input name="Supplier" id="Supplier" type="text" class="form-control"></span>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <span><label>Total Cost(cost_insurance+accessories+road tax)</label></span>
+												<span><input name="cost" id="cost" type="text" class="form-control"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <span><label>Down Payment</label></span>
+												<span><input name="dpayment" id="dpayment" type="text" class="form-control"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <span><label>Tenure</label></span>
+												<span><input name="tenure" id="tenure" type="text" class="form-control"></span>
+                                            </div>
+                                          </div>
+
+                                          <div class="col-sm-12"  style="text-align: center;margin: 4px;"><div>
+                                            <span><input type="submit" value="Submit" class="myButton"></span>
+                                   </div></div>
+                                        </form>
+
+
+<link href="{% static 'assets/jquery/jquery-ui.css' %}" rel="stylesheet" type="text/css"  />
+
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'assets/jquery/jquery.js' %}"></script>
+<script>
+$(function() {
+
+
+	$( "#dob" ).datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true,
+changeYear: true,minDate:'0', });
+
+
+  });</script>
+
+<script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+<script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+
+(function ($, W, D)
+{
+var JQUERY4U = {};
+JQUERY4U.UTIL =
+{
+setupFormValidation: function ()
+{
+$.validator.addMethod(
+"regex",
+function(value, element, regexp) {
+var check = false;
+return this.optional(element) || regexp.test(value);
+},
+"Not a valid Input."
+);
+
+//form validation rules
+$("#myform").validate({
+ignore: [],
+rules: {
+
+    vehicle_type: {
+		  required: true,
+
+		},
+        manufacture:
+        {
+            required: true,
+            regex :/^[a-zA-Z ]+$/,
+		  minlength: 3,
+        },
+        vmodel:
+        {
+            required: true,
+
+		  minlength: 3,
+        },
+        Supplier: {
+            required: true,
+            regex :/^[a-zA-Z ]+$/,
+		  minlength: 3,
+                                    },
+
+    cost: {
+		  required: true,
+          number:true
+
+		},
+        dpayment: {
+		  required: true,
+          number:true
+
+		},
+        tenure: {
+		  required: true,
+          max:5,
+          number:true
+
+		},
+
+	  },
+	  messages: {
+
+
+
+},
+errorPlacement: function(error, element) {
+            error.appendTo( element.parent() );
+        },
+submitHandler: function (form) {
+form.submit();
+}
+});
+}
+}
+//when the dom has loaded setup form validation rules
+$(D).ready(function ($) {
+JQUERY4U.UTIL.setupFormValidation();
+});
+})(jQuery, window, document);
+</script>
+               </div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

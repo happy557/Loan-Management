@@ -1,0 +1,189 @@
+
+{% extends "Site_admin/header_adm.html" %}
+{% block content %}
+{% load static %}
+
+
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="forms">
+					<h3 class="title1">Approve Personal Loan</h3>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms">
+						<div class="form-title">
+							<h4></h4>
+						</div>
+						<div class="form-body">
+							<div class="" style="margin: auto; width: 50%;">
+								{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+  <div class="alert alert-success"> {{message }}</div>
+    {% endfor %}
+</ul>
+{% endif %}
+
+						<form action="/allow_personal_loan/{{id}}" method="post" id="myform">
+                                {% csrf_token %}
+
+                                <div class="form-group"> <label for="">Cibil Score</label>
+									<select name="cibil_score" id="cibil_score" class="form-control">
+<option value="">--Select--</option>
+<option value="800 Above">800 Above</option>
+<option value="750 - 799">800 - 750</option>
+<option value="700 - 749">700 - 749</option>
+<option value="650 - 699">650 - 699</option>
+<option value="550 - 649">600 - 649</option>
+
+
+									</select> </div>
+
+
+                            <div class="form-group"> <label for="">Rate</label>
+                                <input type="text" class="form-control" readonly id="rate" placeholder="Rate" name="Rate"> </div>
+                                <div class="form-group"> <label for="">Loan Limit</label>
+                                    <input type="text" class="form-control" readonly id="loan_limit" placeholder="Loan Limit" name="loan_limit"> </div>
+                                    <div class="form-group"> <label for="">Tenure Month Limit</label>
+                                        <input type="text" class="form-control" readonly id="tenure" placeholder="Tenure" name="tenure"> </div>
+
+                                <div class="form-group"> <label for="">Allowed Loan Amount </label>
+                                    <input type="text"  class="form-control" value="{{data.amount}}" id="loan_amount" placeholder="Loan amount" value="" name="loan_amount"> </div>
+                                    <div class="form-group"> <label for="">Allowed Tenure</label>
+                                      <input type="text"  class="form-control" value="{{data.tenure}}" id="allowed_tenure" placeholder="allowed_tenure" name="allowed_tenure"> </div>
+                                    <div class="form-group"> <label for="">Amount Dispersal Date</label>
+                                        <input type="text" class="form-control" value="" id="dispersal_date" placeholder="Dispersal date" name="dispersal_date"> </div>
+                                <button type="submit" class="btn btn-default">Submit</button> </form>
+
+</div>
+<script>
+    $("#cibil_score").change(function () {
+
+   var cibil_score = $('#cibil_score').val();
+
+
+   $.ajax({
+
+         url: '/display_per_rate/',
+         data: {
+             'cibil_score': cibil_score,
+
+         },
+         dataType: 'json',
+         success: function (data) {
+
+
+
+            data.forEach(function (data) {
+                $('#rate').val(`${data.rate}`)
+                $('#loan_limit').val(`${data.loan_limit}`)
+                $('#allowed_tenure').val(`${data.Tenure}`)
+
+                });
+
+
+
+
+         }
+   });
+
+
+});
+</script>
+<link href="{% static 'assets/jquery/jquery-ui.css' %}" rel="stylesheet" type="text/css"  />
+
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.min.js' %}"></script>
+<script>
+$(function() {
+
+
+	$( "#dispersal_date" ).datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true,
+changeYear: true,minDate:'0', });
+
+  });</script>
+                                <script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+                                <script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+        <script>
+            (function ($, W, D)
+          {
+          var JQUERY4U = {};
+          JQUERY4U.UTIL =
+              {
+                  setupFormValidation: function ()
+                  {
+                    $.validator.addMethod(
+            "regex",
+            function(value, element, regexp) {
+                var check = false;
+                return this.optional(element) || regexp.test(value);
+            },
+            "Not a valid Input."
+        );
+        $.validator.addMethod("greaterThan",
+        function (value, element, param) {
+            var $min = $(param);
+            if (this.settings.onfocusout) {
+                $min.off(".validate-greaterThan").on("blur.validate-greaterThan", function () {
+                    $(element).valid();
+                });
+            }
+            return parseInt(value) <= parseInt($min.val());
+        }, "Less Than or equal to Limit");
+
+
+                  //form validation rules
+                  $("#myform").validate({
+                    rules: {
+						cibil_score: {
+                                          required: true,
+
+
+                                        },
+
+                                        loan_amount: {
+                                          required: true,
+										  number:true,
+                                          greaterThan: '#loan_limit'
+                                        },
+
+                                        allowed_tenure: {
+                                          required: true,
+										  number:true,
+                                          greaterThan: '#tenure'
+
+
+                                        },
+
+                                        dispersal_date: {
+                                          required: true,
+
+
+                                        },
+                                      },
+
+                                      messages: {
+
+
+
+                      },
+                      submitHandler: function (form) {
+                      form.submit();
+                      }
+                  });
+                }
+              }
+          //when the dom has loaded setup form validation rules
+          $(D).ready(function ($) {
+              JQUERY4U.UTIL.setupFormValidation();
+          });
+          })(jQuery, window, document);
+        </script>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+        {% endblock %}

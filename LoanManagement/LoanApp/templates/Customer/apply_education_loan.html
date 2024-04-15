@@ -1,0 +1,248 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+<script>
+  $(function () {
+      $("input[name='chkPassPort']").click(function () {
+          if ($("#chkYes").is(":checked")) {
+              $("#txtPassportNumber").removeAttr("disabled");
+              $("#txtPassportNumber").focus();
+          } else {
+              $("#txtPassportNumber").attr("disabled", "disabled");
+          }
+      });
+  });
+</script>
+<!-- //header -->
+<!-- banner -->
+
+<div class=" w3ls-section" id="inner-about">
+<div class="container">
+
+<h3 class="h3-w3l">Education Loan  Application Form </h3>
+<div class="about-bottom w3l_contact_form ">
+
+
+<div class="col-sm-12">
+
+{% if messages %}
+<ul class="messages">
+{% for message in messages %}
+<div class="alert alert-danger"> {{message }}</div>
+{% endfor %}
+</ul>
+{% endif %}
+
+
+<!-- about bottom-->
+<div class="about-bottom w3l_contact_form ">
+
+<form method="post" action="/save_edu_loan/" method="post" id="myform" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="col-sm-6">
+
+<div class="form-group">
+<span><label>Relation With Student</label></span>
+<span><input name="relation" id="relation" type="text" class="form-control"></span>
+</div>
+
+
+<div class="form-group">
+  <span><label>First Name</label></span>
+  <span><input name="first_name" id="first_name" type="text" class="form-control"></span>
+  </div>
+  <div class="form-group">
+    <span><label>Last Name</label></span>
+    <span><input name="last_name" id="last_name" type="text" class="form-control"></span>
+    </div>
+<div class="form-group">
+<span><label>Date of Birth</label></span>
+<span><input name="dob" id="dob" type="text" class="form-control"></span>
+</div>
+<div class="form-group">
+<span><label>Phone Number</label></span>
+<span><input name="phone_number" id="phone_number" type="text" class="form-control"></span>
+</div>
+<div class="form-group">
+<span><label>Highest Qualification</label></span>
+<span><input name="highest_qualification" id="highest_qualification" type="text" class="form-control"></span>
+</div>
+<div class="form-group">
+<span><label>% of Mark</label></span>
+<span><input name="percentage" id="percentage" type="text" class="form-control"></span>
+</div>
+
+</div>
+<div class="col-sm-6">
+  <div class="form-group">
+    <span><label>Address</label></span>
+    <span><textarea name="address" class="form-control"></textarea></span>
+    </div>
+
+<div class="form-group" style="margin: 10px;">
+<div><label>Course Name</label></div>
+<span><input name="course_name" type="text" class="form-control"></span>
+</div>
+<div class="form-group" style="margin: 10px;">
+<div><label>University</label></div>
+<span><input name="university" type="text" class="form-control"></span>
+</div>
+<div class="form-group" style="margin: 10px;">
+<div><label>Institution</label></div>
+<span><input name="Institution" type="text" class="form-control"></span>
+</div>
+<div class="form-group">
+<span><label>Total Fee</label></span>
+<span><input name="total_fee" id="" type="text" class="form-control"></span>
+</div>
+<div class="form-group" style="margin: 10px;">
+<div><label>Expected Per Month Income after the completion of Course</label></div>
+<span><input name="expected_income" type="text" class="form-control"></span>
+</div>
+</div>
+
+<div class="col-sm-12"  style="text-align: center;margin: 4px;"><div>
+<span><input type="submit" value="Submit" class="myButton"></span>
+</div></div>
+</form>
+
+
+<link href="{% static 'assets/jquery/jquery-ui.css' %}" rel="stylesheet" type="text/css"  />
+
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.min.js' %}"></script>
+<script>
+$(function() {
+
+
+	$( "#dob" ).datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true,
+changeYear: true,maxDate:'-15y', });
+
+  });</script>
+
+						<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+						<script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+
+(function ($, W, D)
+{
+var JQUERY4U = {};
+JQUERY4U.UTIL =
+{
+setupFormValidation: function ()
+{
+$.validator.addMethod(
+"regex",
+function(value, element, regexp) {
+var check = false;
+return this.optional(element) || regexp.test(value);
+},
+"Not a valid Input."
+);
+
+//form validation rules
+$("#myform").validate({
+ignore: [],
+rules: {
+  first_name: {
+    required: true,
+    regex :/^[a-zA-Z]+$/,
+    minlength: 3,
+  },
+ last_name: {
+    required: true,
+    regex :/^[a-zA-Z]+$/,
+    minlength: 3,
+  },
+  relation: {
+    required: true,
+    regex :/^[a-zA-Z ]+$/,
+    minlength: 3,
+  },
+      dob:
+      {
+          required: true,
+      },
+
+      phone: {
+                                      required: true,
+                                      digits:true,
+                                          minlength: 10,
+                                          maxlength: 10,
+                                          regex : /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/
+                                  },
+
+  highest_qualification: {
+    required: true,
+        regex :/^[a-zA-Z ]+$/,
+    minlength: 3,
+
+  },
+      percentage: {
+    required: true,
+        number:true
+
+  },
+      address: {
+    required: true,
+    regex :/^[a-zA-Z ]+$/,
+    minlength: 3,
+  },
+      course_name: {
+    required: true,
+    regex :/^[a-zA-Z ]+$/,
+    minlength: 3,
+  },
+      university: {
+    required: true,
+    regex :/^[a-zA-Z ]+$/,
+    minlength: 3,
+  },
+      Institution: {
+    required: true,
+    regex :/^[a-zA-Z ]+$/,
+    minlength: 3,
+  },
+  total_fee: {
+    required: true,
+    digits:true,
+    min:10000
+
+  },
+      expected_income: {
+    required: true,
+    digits:true,
+      min:10000
+  },
+  },
+  messages: {
+      phone: "Please Enter Valid 10 digit Phone Number - Starting from 6, 7 or 8 or 9",
+
+
+},
+errorPlacement: function(error, element) {
+          error.appendTo( element.parent() );
+      },
+submitHandler: function (form) {
+form.submit();
+}
+});
+}
+}
+//when the dom has loaded setup form validation rules
+$(D).ready(function ($) {
+JQUERY4U.UTIL.setupFormValidation();
+});
+})(jQuery, window, document);
+</script>
+              </div>
+
+
+
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+        <!-- //about-bottom -->
+    </div>
+    {% endblock %}

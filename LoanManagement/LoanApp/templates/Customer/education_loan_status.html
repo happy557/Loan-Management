@@ -1,0 +1,99 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+<script>
+   $(function () {
+        $("input[name='chkPassPort']").click(function () {
+            if ($("#chkYes").is(":checked")) {
+                $("#txtPassportNumber").removeAttr("disabled");
+                $("#txtPassportNumber").focus();
+            } else {
+                $("#txtPassportNumber").attr("disabled", "disabled");
+            }
+        });
+    });
+</script>
+	<!-- //header -->
+	<!-- banner -->
+
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+
+					<h3 class="h3-w3l">Education loan Application list </h3>
+					<div class="about-bottom w3l_contact_form ">
+
+
+								<div class="col-sm-12">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                    {% if data %}
+                                    <table class="table table-striped table-bordered">
+<thead class="alert-danger"><th>Id</th><th>Relation</th><th>Student </th>><th>Highest Qual.</th><th>Percentage</th><th>Course name</th><th>university</th><th>Institution</th><th>Expected Salary</th><th>Total Fee</th><th>Status</th></thead>
+
+                                        {%  for k in data  %}
+
+                                          <tr>
+
+
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{k.relation}}</td>
+                                                <td>Name: {{k.first_name}} &nbsp; &nbsp;  {{k.last_name}}<br>
+Dob:{{k.dob}}<br>
+Phone_no{{k.phone_number}}<br>
+Address {{k.address}}<br>
+
+
+
+
+                                                <td>{{k.highest_qualification}}</td>
+                                                <td>{{k.percentage}}</td>
+
+                                                <td>{{k.course_name}}</td>
+                                                <td>{{k.university}}</td>
+                                                <td>{{k.Institution}}</td>
+                                                <td>{{k.expected_income}}</td>
+                                                <td>{{k.total_fee}}</td>
+                                                {% if k.status == 'Allowed' %}
+                                                <td style="background-color: bisque;">Status : {{k.status}}<br>
+                                                    Allowed Amount : {{k.allowed_loan_amount }}<br>
+                                                    Tenure : {{k.allowed_tenure}}<br>
+                                                    Dispersal Date : {{k.repayment_date }}<br>
+                                                    Interest Rate : {{k.interest_rate}}<br>
+                                                </td>
+                                                {% else %}
+                                                <td>{{k.status}}</td>
+
+                                                {% endif %}
+
+
+
+                                            </tr>
+
+                                            {% endfor  %}
+                                            {% else %}
+                                            <div class="alert alert-success"> No List Available</div>
+                                            {% endif %}
+
+        </table>
+
+                                    <!-- about bottom-->
+                                    <div class="about-bottom w3l_contact_form ">
+
+
+               </div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

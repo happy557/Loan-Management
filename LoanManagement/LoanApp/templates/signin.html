@@ -1,0 +1,149 @@
+
+{% extends "header.html" %}
+{% block content %}
+{% load static %}
+
+	<!-- //header -->
+	<!-- banner -->
+	<div class="banner inner-banner">
+		<div class="header-nav"><!-- header-three -->
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						Menu
+					</button>
+				</div>
+				<!-- top-nav -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="/" data-hover="HOME">Home</a></li>
+						<li><a href="/login/"  class="active">Sign In</a></li>
+
+						<li><a href="/Customer_register/" >Customer Registration </a></li>
+					<li><a href="/emi_calculation/" >EMI Calculator </a></li>
+                    <li><a href="/loan/" >Loan  </a></li>
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+			</nav>
+		</div>
+		<!-- banner-text -->
+		<!-- banner -->
+	</div>
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+					<h3 class="h3-w3l">Login</h3>
+					<!-- about bottom-->
+					<div class="about-bottom w3l_contact_form ">
+
+
+
+							 <div class="col-sm-2">
+
+								</div>
+								<div class="col-sm-6">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+
+                                    <form method="post" action="/login_action/" id="myform">
+                                       {% csrf_token %}
+                                       <div class="form-group">
+                                           <span><label>Username</label></span>
+                                           <span><input name="username" type="text" class="form-control"></span>
+                                       </div>
+                                       <div class="form-group">
+                                           <span><label>Password</label></span>
+                                           <span><input name="password" type="password" class="form-control"></span>
+                                       </div>
+                                       <div class="col-sm-12" style="text-align: center; margin: 10px;">
+                                           <span><input type="submit" value="Login" class="myButton"></span>
+                                  </div>
+                                   </form>
+								</div>
+								<div class="col-sm-2">
+
+									</div>
+
+
+                            </form>
+                            <script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+						<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+						<script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+	(function ($, W, D)
+  {
+  var JQUERY4U = {};
+  JQUERY4U.UTIL =
+      {
+          setupFormValidation: function ()
+          {
+            $.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+    "Not a valid Input."
+);
+
+          //form validation rules
+          $("#myform").validate({
+			ignore: [],
+			rules: {
+								pa: {
+								  required: true,
+                                  number: true,
+                                  max:25000000,
+                                  min:10000,
+
+								},
+								apr: {
+								  required: true,
+                                  number: true,
+                                  max:24,
+                                  min:4,
+								},
+								trm: {
+									required: true,
+                                    number: true,
+                                    max:660,
+                                    min:12,
+								},
+
+							  },
+							  messages: {
+
+
+
+              },
+              submitHandler: function (form) {
+              form.submit();
+              }
+          });
+        }
+      }
+  //when the dom has loaded setup form validation rules
+  $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+  });
+  })(jQuery, window, document);
+</script>
+							</div>
+
+<div class="">  {{df|safe}}</div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

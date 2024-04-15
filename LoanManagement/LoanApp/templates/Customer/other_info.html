@@ -1,0 +1,300 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+
+</script>
+	<!-- //header -->
+	<!-- banner -->
+
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+          {% if check == 0 %}
+					<h3 class="h3-w3l">Personal Information </h3> <div style="font-size:15px; text-align:center; color: brown;">(Please fill this before you apply for Personal loan, Home loan, educational loan and Vehicle Loan}</div>
+					<!-- about bottom-->
+					<div class="about-bottom w3l_contact_form ">
+
+
+								<div class="col-sm-12">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+
+
+                                    <!-- about bottom-->
+                                    <div class="about-bottom w3l_contact_form ">
+
+                                        <form method="post" action="/save_personal/" method="post" id="myform" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <span><label>GENDER</label></span>
+                                                <span><input name="gender" type="radio" value="Male" >Male
+                                                  <input name="gender" type="radio" value="Female" >Female
+                                                </span>
+                                            </div>
+                                            <div class="form-group">
+                                              <span><label>Marital Status</label></span>
+                                              <span><input name="marital_status"  class="dis" type="radio" value="UnMarried" >UnMarried
+                                                <input name="marital_status" type="radio" class="enb" value="Married" >Married
+                                                <input name="marital_status"  class="dis" type="radio" value="other" >other
+                                              </span>
+                                            </div>
+                                            <div class="form-group">
+                                              <span><label>Spouse</label></span>
+                                             <span><input name="spouse" id="spouse" type="text" class="form-control"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              <span><label>No. of Children</label></span>
+                                             <span><input name="no_childen" id="no_childen" type="text" class="form-control"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                              <span><label>No Dependents</label></span>
+                                             <span><input name="no_dependents" id="no_dependents" type="text" class="form-control"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                 <span><label>Date of birth</label></span>
+                                                <span><input name="dob" id="dob" type="text" class="form-control"></span>
+                                            </div>
+
+
+                                           <div class="form-group">
+                                            <span><label>Place</label></span>
+                                           <span><input name="place" type="text" class="form-control"></span>
+                                       </div>
+                                       <div class="form-group">
+                                        <span><label>District</label></span>
+                                       <span><input name="district" type="text" class="form-control"></span>
+                                   </div>
+                                   <div class="form-group">
+                                    <span><label>State</label></span>
+                                   <span><input name="state" type="text" class="form-control"></span>
+                               </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                          <div class="form-group">
+                                            <span><label>Category</label></span>
+                                            <span><input name="category" type="radio" value="SC" >SC
+                                              <input name="category" type="radio" value="ST" >ST
+                                              <input name="category" type="radio" value="General" >General
+                                            </span>
+                                          </div>
+                             <div class="form-group">
+                                                <span><label>Nationality</label></span>
+                                               <span><input name="nationality" type="text" class="form-control"></span>
+                                           </div>
+                                           <div class="form-group">
+                                                <span><label>Residential Status</label></span>
+                                                <span><input name="residential_status" type="radio" value="Owned" >Owned
+                                                  <input name="residential_status" type="radio" value="Rented" >Rented
+                                                  <input name="residential_status" type="radio" value="Other" >Other
+                                                </span>
+                                           </div>
+                                           <div class="form-group">
+                                            <span><label>Place of Birth</label></span>
+                                           <span><input name="place_of_birth" type="text" class="form-control"></span>
+                                       </div>
+                                       <div class="form-group">
+                                        <span><label>Highest Qualification</label></span>
+                                       <span><input name="highest_qualification" type="text" class="form-control"></span>
+                                   </div>
+                                   <div class="form-group">
+                                    <span><label>Ocuupation</label></span>
+                                   <span><input name="occupation" type="text" class="form-control"></span>
+                               </div>
+                               <div class="form-group">
+                                <span><label>Income</label></span>
+                               <span><input name="income" type="text" class="form-control"></span>
+                           </div>
+
+                                       <div class="form-group">
+                                        <span><label>Pan Card</label></span>
+                                       <span><input name="pan_card" type="text" class="form-control"></span>
+                                   </div>
+                                   <div class="form-group">
+                                    <span><label>Upload ITR</label></span>
+                                   <span><input name="itr" type="file" class="form-control"></span>
+                               </div>
+                                          </div></div>
+                                          <div class="col-sm-12"  style="text-align: center;"><div>
+                                            <span><input type="submit" value="Submit" class="myButton"></span>
+                                   </div></div>
+                                        </form>
+
+                                        {% else %}
+                                        <div class="alert alert-success">Already Updated</div>
+                                        {% endif %}
+                                        <link href="{% static 'assets/jquery/jquery-ui.css' %}" rel="stylesheet" type="text/css"  />
+
+                                        <script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.js' %}"></script>
+                                        <script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.min.js' %}"></script>
+                                        <script>
+$(".dis").click(function(){
+  $("#spouse").attr("disabled","disabled");
+  $("#no_childen").attr("disabled","disabled");
+
+});
+$(".enb").click(function(){
+  $("#spouse").removeAttr('disabled');
+  $("#no_childen").removeAttr('disabled');
+});
+
+                                        $(function() {
+
+
+                                          $( "#dob" ).datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true,
+                                        changeYear: true,maxDate:'-15y', });
+
+                                          });</script>
+
+                                                    <script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+                                                    <script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+                                        <script>
+
+                                        (function ($, W, D)
+                                        {
+                                        var JQUERY4U = {};
+                                        JQUERY4U.UTIL =
+                                        {
+                                        setupFormValidation: function ()
+                                        {
+                                        $.validator.addMethod(
+                                        "regex",
+                                        function(value, element, regexp) {
+                                        var check = false;
+                                        return this.optional(element) || regexp.test(value);
+                                        },
+                                        "Not a valid Input."
+                                        );
+
+                                        //form validation rules
+                                        $("#myform").validate({
+                                        ignore: [],
+                                        rules: {
+                                          gender: {
+                                            required: true,
+
+                                          },
+                                          marital_status: {
+                                            required: true,
+
+                                          },
+                                          spouse: {
+                                            required: true,
+                                            regex :/^[a-zA-Z ]+$/,
+                                            minlength: 3,
+                                          },
+                                          no_children: {
+                                            required: true,
+                                           digits:true,
+                                            minlength: 1,
+                                          },
+                                          no_dependents: {
+                                            required: true,
+                                           digits:true,
+                                            minlength: 1,
+                                          },
+
+                                          place: {
+                                            required: true,
+                                            regex :/^[a-zA-Z ]+$/,
+                                            minlength: 3,
+                                          },
+                                          district: {
+                                            required: true,
+                                            regex :/^[a-zA-Z ]+$/,
+                                            minlength: 3,
+                                          },
+                                          state: {
+                                            required: true,
+                                            regex :/^[a-zA-Z ]+$/,
+                                            minlength: 3,
+                                          },
+                                          dob:
+                                              {
+                                                  required: true,
+                                              },
+                                              category:
+                                              {
+                                                  required: true,
+                                              },
+                                              nationality:
+                                              {
+                                                  required: true,
+                                              },
+                                              place_of_birth:
+                                              {
+                                              required: true,
+                                            regex :/^[a-zA-Z ]+$/,
+                                            minlength: 3,
+                                              },
+                                              residential_status: {
+                                                                              required: true,
+
+                                                                          },
+
+                                          highest_qualification: {
+                                            required: true,
+                                                regex :/^[a-zA-Z ]+$/,
+                                            minlength: 3,
+
+                                          },
+                                          occupation: {
+                                            required: true,
+                                            regex :/^[a-zA-Z ]+$/,
+                                            minlength: 3,
+
+                                          },
+                                          income: {
+                                            required: true,
+                                            digits:true,
+                                            min:10000
+
+                                          },
+                                          pan_card: {
+                                            required: true,
+                                            extension:'jpg|jpeg'
+                                          },
+                                          itr: {
+                                            required: true,
+                                            extension:'pdf'
+                                          },
+                                          },
+                                          messages: {
+                                            pan_card: "jpg or jpeg format",
+                                            itr: "pdf only",
+
+
+                                        },
+                                        errorPlacement: function(error, element) {
+                                                  error.appendTo( element.parent() );
+                                              },
+                                        submitHandler: function (form) {
+                                        form.submit();
+                                        }
+                                        });
+                                        }
+                                        }
+                                        //when the dom has loaded setup form validation rules
+                                        $(D).ready(function ($) {
+                                        JQUERY4U.UTIL.setupFormValidation();
+                                        });
+                                        })(jQuery, window, document);
+                                        </script>
+
+               </div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

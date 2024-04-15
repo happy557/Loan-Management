@@ -1,0 +1,57 @@
+{% extends "header.html" %}
+{% block content %}
+{% load static %}
+
+	<!-- //header -->
+	<!-- banner -->
+	<div class="banner inner-banner">
+		<div class="header-nav"><!-- header-three -->
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						Menu
+					</button>
+				</div>
+				<!-- top-nav -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a  href="/" data-hover="HOME">Home</a></li>
+						<li><a href="/login/" >Sign In</a></li>
+
+						<li><a href="/Customer_register/">Customer Registration </a></li>
+					<li><a href="/emi_calculation/">EMI Calculator </a></li>
+                    <li><a href="/loan/"   class="active">Loan  </a></li>
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+			</nav>
+		</div>
+		<!-- banner-text -->
+		<!-- banner -->
+	</div>
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+					<h3 class="h3-w3l">Loan Schemes</h3>
+					<!-- about bottom-->
+					<div class="about-bottom w3l_contact_form ">
+
+<div class="col-sm-3 loan"><a href="/education_loan_cust/"><img src="{% static 'assets/images/education.jpg' %}" height="250" width="100%"></a>
+<h2>Education Loan</h2>
+</div>
+<div class="col-sm-3 loan"><a href="/vehicle_loan_cust/"><img src="{% static 'assets/images/car.jpg' %}" height="250" width="100%"></a>
+    <h2>Vehicle Loan</h2>
+    </div>
+
+   <div class="col-sm-3 loan"><a href="/home_loan_cust/"><img src="{% static 'assets/images/home.jpg' %}" height="250" width="100%"></a>
+    <h2>Home Loan</h2>
+    </div>
+    <div class="col-sm-3 loan"><a href="/personal_loan_cust/"><img src="{% static 'assets/images/personal.jpg' %}" height="250" width="100%"></a>
+        <h2>Personal Loan</h2>
+        </div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

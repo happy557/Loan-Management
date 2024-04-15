@@ -1,0 +1,75 @@
+
+{% extends "Site_admin/header_adm.html" %}
+{% block content %}
+{% load static %}
+
+
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="forms">
+					<h3 class="title1">Applicant Details</h3>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms">
+						<div class="form-title">
+							<h4></h4>
+						</div>
+						<div class="form-body">
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                              <div class="alert alert-success"> {{message }}</div>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% if data1 %}
+                                        <table class="table table-striped table-bordered">
+
+
+                                            {%  for k in data1  %}
+
+                                              <tr>
+
+                                                <tr><th>Income</th> <td>{{k.income}} </td> </tr>
+                                                <tr><th>ITR</th> <td><a class="btn btn-default" target="_blank" href="{{k.itr }}">Click Here to Download Income Tax Return </a>  </td></tr>
+                                                    <tr><th>Photo</th> <td><img src="{{k.photo }}" width="200" height="150">   </td>         </tr>
+                                                    <tr><th>Identity Proof</th> <td><a class="btn btn-default" target="_blank" href="{{k.identity_proof }}">Click Here to Download Identity Proof</a>  </td></tr>
+                                                  <th>First Name</th>  <td>{{k.firstname}}</td></tr>
+                                                  <tr><th>Last Name</th> <td>{{k.lastname}}</td></tr>
+                                                  <tr><th>Phone</th>  <td>{{k.phone_number}}</td></tr>
+                                                  <tr><th>Address</th> <td>{{k.address }}   </td></tr>
+                                                  <tr><th>Mail Id</th> <td>{{k.mail_id }}   </td></tr>
+
+
+                                                  <tr><th>Gender</th> <td>{{k.gender }} </td> </tr>
+                                                  <tr><th>Marital Status</th> <td>{{k.marital_status }} </td> </tr>
+                                                  <tr><th>Date of Birth</th> <td>{{k.dob}} </td> </tr>
+                                                  <tr><th>Spouse name</th> <td>{{k.spouse}} </td> </tr>
+                                                  <tr><th>No. of Dependents</th> <td>{{k.no_dependents}} </td> </tr>
+                                                  <tr><th>No. of Children</th> <td>{{k.no_childen}} </td> </tr>
+                                                  <tr><th>Category</th> <td>{{k.caste_category}} </td> </tr>
+                                                  <tr><th>Nationality</th> <td>{{k.nationality}} </td> </tr>
+                                                  <tr><th>Residential Status</th> <td>{{k.residential_status}} </td> </tr>
+                                                  <tr><th>Place of Birth</th> <td>{{k.place_of_birth}} </td> </tr>
+                                                  <tr><th>Pan no</th> <td>{{k.pan_no}} </td> </tr>
+                                                  <tr><th>Highest Qualifiction</th> <td>{{k.highest_qualification}} </td> </tr>
+                                                  <tr><th>City</th> <td>{{k.city}} </td> </tr>
+                                                  <tr><th>District</th> <td>{{k.district}} </td> </tr>
+
+
+
+
+
+                                                {% endfor  %}
+                                                {% else %}
+                                                <div class="alert alert-success"> No List Available</div>
+                                                {% endif %}
+
+                                          </table>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+        {% endblock %}

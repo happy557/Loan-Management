@@ -1,0 +1,195 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+<script>
+   $(function () {
+        $("input[name='chkPassPort']").click(function () {
+            if ($("#chkYes").is(":checked")) {
+                $("#txtPassportNumber").removeAttr("disabled");
+                $("#txtPassportNumber").focus();
+            } else {
+                $("#txtPassportNumber").attr("disabled", "disabled");
+            }
+        });
+    });
+</script>
+	<!-- //header -->
+	<!-- banner -->
+
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+
+					<h3 class="h3-w3l">Home loan Application Form </h3>
+					<div class="about-bottom w3l_contact_form ">
+
+
+								<div class="col-sm-12">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+
+
+                                    <!-- about bottom-->
+                                    <div class="about-bottom w3l_contact_form ">
+
+                                        <form method="post" action="/save_homeloan/" method="post" id="myform" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="col-sm-6">
+
+											<div class="form-group">
+												<span><label>Total Cost</label></span>
+											   <span><input name="total_cost" id="total_cost" type="text" class="form-control"></span>
+											  </div>
+                                            <div class="form-group">
+                                              <span><label>Address of Property</label></span>
+                                             <span><textarea name="address" class="form-control"></textarea></span>
+                                            </div>
+
+											<div class="form-group">
+                                                <span><label>Loan Amount</label></span>
+												<span><input name="loan_amount" id="loan_amount" type="text" class="form-control"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+
+                                            <div class="form-group" style="margin: 10px;">
+                                              <div><label>Loan Purpose</label></div>
+                                              <span><input name="loan_purpose" type="radio" value="Purchase New House" >&nbsp;&nbsp;Purchase New House&nbsp;&nbsp;
+												<input name="loan_purpose" type="radio" value="Purchase Old House" >&nbsp;&nbsp;Purchase Old House&nbsp;&nbsp;<br>
+                                                <input name="loan_purpose" type="radio" value="Purchase Land" >&nbsp;&nbsp;Purchase Land&nbsp;&nbsp;
+                                                <input name="loan_purpose" type="radio" value="Repairs or Rennovation" >&nbsp;&nbsp;Repairs or Rennovation&nbsp;&nbsp;
+                                              </span>
+                                            </div>
+											<div class="form-group">
+												<span><label>Place</label></span>
+											   <span><input name="place" type="text" class="form-control"></span>
+										   </div>
+										   <div class="form-group">
+											<span><label>District</label></span>
+										   <span><input name="district" type="text" class="form-control"></span>
+									   </div>
+									   <div class="form-group">
+										<span><label>State</label></span>
+									   <span><input name="state" type="text" class="form-control"></span>
+								   </div>
+                                          </div>
+                                          <div class="col-sm-12"  style="text-align: center;margin: 4px;"><div>
+                                            <span><input type="submit" value="Submit" class="myButton"></span>
+                                   </div></div>
+                                        </form>
+
+
+                                        <link href="{% static 'assets/jquery/jquery-ui.css' %}" rel="stylesheet" type="text/css"  />
+
+<script type="text/javascript" src="{% static 'assets/jquery/jquery-ui.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'assets/jquery/jquery.js' %}"></script>
+<script>
+$(function() {
+
+
+	$( "#dob" ).datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true,
+changeYear: true,minDate:'0', });
+
+
+  });</script>
+
+<script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+<script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+
+(function ($, W, D)
+{
+var JQUERY4U = {};
+JQUERY4U.UTIL =
+{
+setupFormValidation: function ()
+{
+$.validator.addMethod(
+"regex",
+function(value, element, regexp) {
+var check = false;
+return this.optional(element) || regexp.test(value);
+},
+"Not a valid Input."
+);
+
+//form validation rules
+$("#myform").validate({
+ignore: [],
+rules: {
+	total_cost: {
+		  required: true,
+		  digits:true,
+		  min:10000
+
+		},
+		address: {
+		  required: true,
+		  regex :/^[a-zA-Z ]+$/,
+		  minlength: 3,
+		},
+		loan_amount: {
+			required: true,
+			digits:true,
+			 min:10000
+		},
+		loan_purpose: {
+		  required: true,
+
+
+		},
+		place: {
+		  required: true,
+		  regex :/^[a-zA-Z ]+$/,
+		  minlength: 3,
+		},
+		district: {
+		  required: true,
+		  regex :/^[a-zA-Z ]+$/,
+		  minlength: 3,
+		},
+		state: {
+		  required: true,
+		  regex :/^[a-zA-Z ]+$/,
+		  minlength: 3,
+		},
+	  },
+	  messages: {
+
+
+
+},
+errorPlacement: function(error, element) {
+            error.appendTo( element.parent() );
+        },
+submitHandler: function (form) {
+form.submit();
+}
+});
+}
+}
+//when the dom has loaded setup form validation rules
+$(D).ready(function ($) {
+JQUERY4U.UTIL.setupFormValidation();
+});
+})(jQuery, window, document);
+</script>
+               </div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

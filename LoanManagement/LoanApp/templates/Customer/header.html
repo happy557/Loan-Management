@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>E-Loan Management System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="E-Banking Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'assets/css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+<link href="{% static 'assets/css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+<link href="{% static 'assets/css/mystyle.css' %}" type="text/css" rel="stylesheet" media="all">
+<link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet">   <!-- font-awesome icons -->
+<!-- //Custom Theme files -->
+<!-- js -->
+	<script src="{% static 'assets/js/jquery-2.2.3.min.js' %}"></script>
+<!-- web-fonts -->
+<link href="//fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- //web-fonts -->
+<script>
+ $(function(){
+    var current = location.pathname;
+    $('li a').each(function(){
+        var $this = $(this);
+
+        // if the current path is like this link, make it active
+        if($this.attr('href').indexOf(current) !== -1){
+            $this.addClass('active');
+            ((($(this).parent()).parent()).parent().children('a')).addClass('active');
+        }
+    })
+})
+</script>
+</head>
+<body>
+
+	<div class="headerw3-agile">
+		<div class="header-w3mdl"><!-- header-two -->
+			<div class="container">
+				<div class="agileits-logo navbar-left">
+					<h1><a href="#"><img src="{% static 'assets/images/e.png' %}" alt="logo"/>Loan Management System</a></h1>
+				</div>
+				<div class="agileits-hdright nav navbar-nav">
+					<div class="header-w3top"><!-- header-top -->
+						<h3>Customer</h3>
+						<div class="clearfix"> </div>
+					</div>
+
+
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+    <!-- header -->
+    <div class="banner inner-banner">
+		<div class="header-nav"><!-- header-three -->
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						Menu
+					</button>
+				</div>
+				<!-- top-nav -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li ><a href="/Customer/">Home</a></li>
+                        <li ><a href="/other_info/">Personal Details</a></li>
+                        <li><a href="#" data-toggle="dropdown">Loan Application <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+                                <li><a href="/apply_home_loan/" >Home Loan</a></li>
+                                <li><a href="/home_loan_status/" >Home Loan_status</a></li>
+								<li><a href="/apply_education_loan/" >Education Loan</a></li>
+                                <li><a href="/education_loan_status/" >Education Loan status</a></li>
+                                <li><a href="/apply_personal_loan/" >Personal Loan</a></li>
+                                <li><a href="/personal_loan_status/" >Personal Loan status</a></li>
+                                <li><a href="/apply_vehicle_loan/" >Vehicle Loan</a></li>
+                                <li><a href="/vehicle_loan_status/" >Vehicle Loan status</a></li>
+							</ul>
+						</li>
+                        <li><a href="/Amortization/" >Amortization</a></li>
+
+                        <li><a href="#" data-toggle="dropdown">Complaint<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/complaint/" >Complaint</a></li>
+                                <li><a href="/Complaint_list/" >Complaint Reply</a></li>
+							</ul>
+						</li>
+
+                        <li><a href="#" data-toggle="dropdown">Account<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/profile/" >Profile</a></li>
+
+                                <li><a href="/change_password/" >Change Password</a></li>
+							</ul>
+						</li>
+                        <li ><a href="/User_Logout/">Log Out</a></li>
+
+					</ul>
+					<div class="clearfix"> </div>
+				</div>
+			</nav>
+		</div>
+		<!-- banner-text -->
+		<!-- banner -->
+	</div>
+    {% block content %}{% endblock %}
+    <div class="agile-footer w3ls-section">
+        <div class="container">
+            <div class="col-md-7 list-footer">
+                </div>
+            <div class="col-md-5 agileinfo-sub">
+
+            </div>
+            <div class="clearfix"></div>
+         </div>
+    </div>
+    <div class="w3_agile-copyright text-center">
+
+        </div>
+        <div class="modal bnr-modal fade" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <img src="{% static 'assets/images/logo.png' %}" alt="logo"/>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{% static 'assets/images/modal.jpg' %}" class="img-responsive" alt="image">
+                        <p>Fusce et congue nibh, ut ullamcorper magna. Donec ac massa tincidunt, fringilla sapien vel, tempus massa. Vestibulum felis leo, tincidunt sit amet tristique accumsan. In vitae dapibus metus. Donec nec massa non nulla mattis aliquam egestas et mi.</p>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+        <!-- modal-sign -->
+        <div class="modal bnr-modal fade" id="myModal1" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="{% static 'assets/images/logo.png' %}" alt="logo"/>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body modal-spa">
+                        <p>E-Banking's email newsletter provides subscribers with helpful articles on important issues in the banking industry, as well as news about events and more! To sign up for the newsletter, fill the below form.</p>
+                        <form class=" wthree-subsribe" action="#" method="post">
+                            <input type="text" name="name" placeholder="Your Name" required="">
+                            <input type="email" name="email" placeholder="your Email" required="">
+                            <input type="submit" value="SignUp">
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //modal-sign -->
+        <!-- //banner -->
+            <!-- //banner-text -->
+        <!-- //banner -->
+        <!-- banner Slider starts Here -->
+        <script src="{% static 'assets/js/responsiveslides.min.js' %}"></script>
+        <script>
+            // You can also use "$(window).load(function() {"
+            $(function () {
+              // Slideshow 3
+              $("#slider3").responsiveSlides({
+                auto:true,
+                pager:false,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                  $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                  $('.events').append("<li>after event fired.</li>");
+                }
+              });
+
+            });
+        </script>
+        <script src="{% static 'assets/js/SmoothScroll.min.js' %}"></script>
+        <!-- smooth-scrolling-of-move-up -->
+        <script type="text/javascript" src="{% static 'assets/js/move-top.js' %}"></script>
+        <script type="text/javascript" src="{% static 'assets/js/easing.js' %}"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                /*
+                var defaults = {
+                    containerID: 'toTop', // fading element id
+                    containerHoverID: 'toTopHover', // fading element hover id
+                    scrollSpeed: 1200,
+                    easingType: 'linear'
+                };
+                */
+
+                $().UItoTop({ easingType: 'easeOutQuart' });
+
+            });
+        </script>
+        <!-- //smooth-scrolling-of-move-up -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+
+    </body>
+    </html>

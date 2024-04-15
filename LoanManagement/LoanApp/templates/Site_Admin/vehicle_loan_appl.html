@@ -1,0 +1,63 @@
+
+{% extends "Site_admin/header_adm.html" %}
+{% block content %}
+{% load static %}
+
+
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="forms">
+					<h3 class="title1">Vehicle Loan Application</h3>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms">
+						<div class="form-title">
+							<h4></h4>
+						</div>
+						<div class="form-body">
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                              <div class="alert alert-success"> {{message }}</div>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% if data %}
+                            <table class="table table-striped table-bordered">
+<thead class="alert-danger"><th>Id</th><th>Vehicle Type</th><th>Manufacture</th><th>Model</th><th>Supplier</th><th>cost</th><th>Down payment</th><th>Tenure</th><th>Status</th><th>#</th><th>#</th><th>#</th></thead>
+
+                                {%  for k in data  %}
+
+                                  <tr>
+
+
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{k.vehicle_type}}</td>
+                                        <td>{{k.manufacture }}</td>
+                                        <td>{{k.vmodel}}</td>
+                                        <td>{{k.Supplier}}</td>
+                                        <td>{{k.cost}}</td>
+                                        <td>{{k.dpayment}}</td>
+                                        <td>{{k.tenure }}</td>
+                                        <td>{{k.status}}</td>
+                                        <td><a href="/view_applicant_personal_details/{{k.user_login_id}}" class="btn btn-info">View Applicant</a></td>
+                                        <td><a href="/approve_vehicle_loan/{{k.user_login_id}}"  class="btn btn-success">Approve</a></td>
+                                        <td><a href="/reject_vehicle_loan/{{k.user_login_id}}"  class="btn btn-danger">Reject</a></td>
+
+
+                                    </tr>
+
+                                    {% endfor  %}
+                                    {% else %}
+                                    <div class="alert alert-success"> No List Available</div>
+                                    {% endif %}
+
+</table>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+        {% endblock %}

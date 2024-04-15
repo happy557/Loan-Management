@@ -1,0 +1,41 @@
+.dataframe th{
+    padding: 7px;
+}
+.dataframe {
+    margin-top: 7px;
+    width: 100%;
+}
+.dataframe > thead > tr > th,
+.dataframe > tbody > tr > th,
+.dataframe > tfoot > tr > th,
+.dataframe > thead > tr > td,
+.dataframe > tbody > tr > td,
+.dataframe > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+.dataframe > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+input .error
+{
+    border: 1px solid red !important;
+}
+.error
+{
+    color: red !important;
+}
+.form-group label
+{
+  padding: 5px;
+}
+.loan
+{
+  border: 1px solid #eaf1ea;
+  padding: 10px;
+
+  text-align: center;
+}

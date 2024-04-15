@@ -1,0 +1,59 @@
+
+{% extends "Site_admin/header_adm.html" %}
+{% block content %}
+{% load static %}
+
+
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="forms">
+					<h3 class="title1">Approve Customer</h3>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms">
+						<div class="form-title">
+							<h4></h4>
+						</div>
+						<div class="form-body">
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                              <div class="alert alert-success"> {{message }}</div>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% if data %}
+                            <table class="table table-striped table-bordered">
+                                <thead><th>Id</th><th>First Name</th><th>Last Name</th><th>Address</th><th>Phone Number</th><th>Email Id</th><th>#</th></thead>
+
+                                {%  for k in data  %}
+
+                                  <tr>
+
+
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{k.firstname}}</td>
+                                        <td>{{k.lastname}}</td>
+                                        <td>{{k.address}}</td>
+                                        <td>{{k.phone_number}}<br>
+
+                                        </td>
+                                        <td>{{k.mail_id}}<br>
+
+                                        </td>
+               
+                                    </tr>
+
+                                    {% endfor  %}
+                                    {% else %}
+                                    <div class="alert alert-success"> No List Available</div>
+                                    {% endif %}
+
+</table>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+        {% endblock %}

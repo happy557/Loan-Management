@@ -1,0 +1,111 @@
+
+{% extends "Customer/header.html" %}
+{% block content %}
+{% load static %}
+
+	<!-- //header -->
+	<!-- banner -->
+
+			<div class=" w3ls-section" id="inner-about">
+				<div class="container">
+					<h3 class="h3-w3l">Customer Home</h3>
+					<!-- about bottom-->
+					<div class="about-bottom w3l_contact_form ">
+
+
+
+							 <div class="col-sm-2">
+
+								</div>
+								<div class="col-sm-6">
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                      <div class="alert alert-danger"> {{message }}</div>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+
+                                  <h1></h1>
+								</div>
+								<div class="col-sm-2">
+
+									</div>
+
+
+                            </form>
+                            <script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+						<script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+						<script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+<script>
+	(function ($, W, D)
+  {
+  var JQUERY4U = {};
+  JQUERY4U.UTIL =
+      {
+          setupFormValidation: function ()
+          {
+            $.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+    "Not a valid Input."
+);
+
+          //form validation rules
+          $("#myform").validate({
+			ignore: [],
+			rules: {
+								pa: {
+								  required: true,
+                                  number: true,
+                                  max:25000000,
+                                  min:10000,
+
+								},
+								apr: {
+								  required: true,
+                                  number: true,
+                                  max:24,
+                                  min:4,
+								},
+								trm: {
+									required: true,
+                                    number: true,
+                                    max:660,
+                                    min:12,
+								},
+
+							  },
+							  messages: {
+
+
+
+              },
+              submitHandler: function (form) {
+              form.submit();
+              }
+          });
+        }
+      }
+  //when the dom has loaded setup form validation rules
+  $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+  });
+  })(jQuery, window, document);
+</script>
+							</div>
+
+<div class="">  {{df|safe}}</div>
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					<!-- //about-bottom -->
+			</div>
+			{% endblock %}

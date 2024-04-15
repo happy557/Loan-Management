@@ -1,0 +1,69 @@
+
+{% extends "Site_admin/header_adm.html" %}
+{% block content %}
+{% load static %}
+
+
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="forms">
+					<h3 class="title1">Education Loan Application</h3>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms">
+						<div class="form-title">
+							<h4></h4>
+						</div>
+						<div class="form-body">
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                              <div class="alert alert-success"> {{message }}</div>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% if data %}
+                            <table class="table table-striped table-bordered">
+<thead class="alert-danger"><th>Id</th><th>Relation</th><th>Student Details</th><th> Qual.</th><th>Percentage</th><th>Course Details</th><th>Exp.Salary</th><th>Total Fee</th><th>#</th><th>#</th><th>#</th></thead>
+
+                                {%  for k in data  %}
+
+                                  <tr>
+
+
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{k.relation}}</td>
+                                        <td>{{k.first_name}}&nbsp;&nbsp;{{k.last_name}}<br>
+                                        DOB: {{k.dob}}<br>
+                                      Phone: {{k.phone_number}}<br>
+                                    Address: {{k.address}}</td>
+
+                                        <td>{{k.highest_qualification}}</td>
+                                        <td>{{k.percentage}}</td>
+
+                                        <td>Course :{{k.course_name}}<br>
+                                       University : {{k.university}}<br>
+                                       Institution : {{k.Institution}}</td>
+                                        <td>{{k.expected_income}}</td>
+                                        <td>{{k.total_fee}}</td>
+
+                                        <td><a href="/view_applicant_personal_details/{{k.user_login_id}}" class="btn btn-info">View </a></td>
+                                        <td><a href="/approve_education_loan/{{k.user_login_id}}"  class="btn btn-success">Approve</a></td>
+                                        <td><a href="/reject_education_loan/{{k.user_login_id}}"  class="btn btn-danger">Reject</a></td>
+
+
+                                    </tr>
+
+                                    {% endfor  %}
+                                    {% else %}
+                                    <div class="alert alert-success"> No List Available</div>
+                                    {% endif %}
+
+</table>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+        {% endblock %}
